@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>BookFinder</title>
@@ -12,7 +13,37 @@
   <script src="https://use.fontawesome.com/00f1d6f00e.js"></script>
 
 </head>
+
 <body class="mat-typography">
   <app-root></app-root>
+
 </body>
+
+
+
 </html>
+
+<script>
+
+
+
+  window.onscroll = function () {
+    const a = document.getElementById("arrow");
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      a.style.display = "block";
+    } else {
+      a.style.display = "none";
+    }
+  };
+
+  window.onload = function scrollFunction() {
+    
+
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+</script>

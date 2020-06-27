@@ -1,32 +1,40 @@
 <div class="content-container">
-    <form class="content-form">
-        <mat-form-field class="content-full-width">
-            <mat-label>Livros que deseja procurar</mat-label>
-            <input matInput placeholder="Ex. Paulo" value="" autocomplete="off">
-        </mat-form-field>
+  <form class="content-form" #consultaForm="ngForm" (submit)="consultar()">
+    <mat-form-field class="content-full-width">
+      <mat-label>Livros que deseja procurar</mat-label>
+      <input matInput [(ngModel)]="bookName" name="bookName" placeholder="Ex. Paulo" value="" autocomplete="off">
+    </mat-form-field>
 
-        <div mat-dialog-actions align="end">
-            <button mat-raised-button color="primary">Procurar</button>
-        </div>
-    </form>
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary">Procurar</button>
+    </div>
+  </form>
 
-    <mat-card class="card">
-        <mat-card-header>
-          <div mat-card-avatar class="card-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
+
+  <div class="card-container">
+    <mat-card class="card" *ngFor="let book of books">
+      <mat-card-header>
+        <img mat-card-avatar class="card-header-image" src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" />
+        <mat-card-title>{{ book.volumeInfo.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.volumeInfo.authors }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src='{{ book.volumeInfo.imageLinks.smallThumbnail }}' alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+
+          {{ book.volumeInfo.description }}
+
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button href="{{ book.saleInfo.buyLink }}">COMPRAR</a>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+  
+  <button id="arrow" onclick="topFunction()">
+    <i class="fa fa-arrow-up" ></i>
+  </button>
 </div>

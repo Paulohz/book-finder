@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ContentService } from '../content.service';
+import { Book } from './Book';
+
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent{
 
-  constructor() { }
+  books: Book[];
+  bookName: string;
 
-  ngOnInit(): void {
+  constructor(
+    private contentService: ContentService,
+  ) {
+    
+   }
+
+  consultar(){
+    this.contentService
+      .getBooks(this.bookName)
+      .subscribe(data => {
+        console.log(data)
+        this.books = data
+
+      })
   }
 
 }
